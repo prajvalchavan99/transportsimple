@@ -1,0 +1,8 @@
+.auth-container {
+    height: calc(100vh - 250px);
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    flex-direction: row;
+    flex-wrap: wrap;
+}

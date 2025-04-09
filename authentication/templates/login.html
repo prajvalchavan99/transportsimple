@@ -1,19 +1,20 @@
-{% extends "base.html" %} {% block title %}<title>Login</title>{% endblock title
-%} {% block content %}
-<div class="form-box">
-  <h2>Login</h2>
-  <form method="post">
-    {% csrf_token %}
-    <table>
-      {{form.as_table}}
-    </table>
-    {% if next %}
-    <input type="hidden" name="next" value="{{ next }}" />
-    {% endif %}
-    <button type="submit">Login</button>
-  </form>
-  <a href="{% url 'authentication:register' %}"
+{% extends "base.html" %} {% block title %}Login{% endblock title %} {% block content %}
+<div class="auth-container">
+  <div class="form-box">
+    <h2>Login</h2>
+    <form method="post">
+      {% csrf_token %}
+      <table>
+        {{form.as_table}}
+      </table>
+      {% if next %}
+      <input type="hidden" name="next" value="{{ next }}" />
+      {% endif %}
+      <button type="submit">Login</button>
+    </form>
+    <a href="{% url 'authentication:register' %}"
     >Don't have an account? Register</a
-  >
+    >
+  </div>
 </div>
 {% endblock content %}
