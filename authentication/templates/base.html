@@ -1,0 +1,27 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>{% block title %}TransportSimple{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'css/theme.css' %}" />
+  </head>
+  <body>
+    <header>
+      <h1>TransportSimple</h1>
+      <nav>
+        {% if user.is_authenticated %} Welcome, {{ request.user.username }}
+        <a href="{% url 'authentication:dashboard' %}">Home</a>
+        <a href="{% url 'authentication:logout' %}">Logout</a>
+        {% else %}
+        <a href="{% url 'authentication:dashboard' %}">Home</a>
+        <a href="{% url 'authentication:login' %}">Login</a>
+        <a href="{% url 'authentication:register' %}">Register</a>
+        {% endif %}
+      </nav>
+    </header>
+
+    <div class="content">{% block content %}{% endblock %}</div>
+
+    <footer>&copy; 2025 Built using Django.</footer>
+  </body>
+</html>

@@ -1,0 +1,95 @@
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #f0f2f5;
+  }
+  header {
+    background-color: #007bff;
+    color: white;
+    padding: 15px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  header h1 {
+    margin: 0;
+    font-size: 24px;
+  }
+  header nav a {
+    color: white;
+    margin-left: 15px;
+    text-decoration: none;
+    font-weight: bold;
+  }
+  footer {
+    background-color: #343a40;
+    color: white;
+    text-align: center;
+    padding: 15px;
+    position: fixed;
+    width: 100%;
+    bottom: 0;
+  }
+  .content {
+    padding: 40px 20px 80px; /* space for footer */
+    min-height: 80vh;
+  }
+  .container {
+    background: white;
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  }
+  h1 {
+    margin-bottom: 20px;
+  }
+  h2 {
+      margin: 0;
+  }
+  
+  a {
+    text-align: center;
+    margin-top: 10px;
+    color: #007bff;
+  }
+  
+  a.button {
+    color: white;
+    background: #dc3545;
+    padding: 10px 20px;
+    border-radius: 5px;
+    text-decoration: none;
+    display: block;
+    width: fit-content;
+  }
+  
+  button {
+    width: 100%;
+    padding: 10px;
+    background: #007bff;
+    border: none;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  table {
+    text-align: left;
+  }
+  .form-box {
+    background: white;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    width: 300px;
+  }
+  
+  .form-box h2 {
+    margin-bottom: 20px;
+    text-align: center;
+  }
+  
+  button.forumbutton {
+      font-size: 16px;
+      width: fit-content;
+  }
