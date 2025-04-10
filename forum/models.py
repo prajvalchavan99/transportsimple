@@ -46,4 +46,4 @@ class Like(models.Model):
         unique_together = ('user', 'answer')
 
     def __str__(self):
-        return {self.user.username} + 'liked answer' + {self.answer.id}
+        return f'{self.user.username} liked answer {self.answer.id}'
