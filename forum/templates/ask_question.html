@@ -1,4 +1,15 @@
-{% extends 'base.html' %} {% block title %}Home{% endblock %}
+{% extends 'base.html' %}
+{% block title %}Ask a Question{% endblock %}
+
 {% block content %}
-<h1>ask_question.html</h1>
+<div class="ask-container">
+  <h2>Ask a Question</h2>
+  <form method="post" class="ask-form">
+    {% csrf_token %}
+    <table>
+      {{ form.as_table }}
+    </table>
+    <button type="submit" class="submit-btn">Post Question</button>
+  </form>
+</div>
 {% endblock %}

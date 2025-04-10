@@ -1,4 +1,37 @@
-{% extends 'base.html' %} {% block title %}Home{% endblock %}
+{% extends 'base.html' %}
+{% block title %}Answer Question{% endblock %}
+
 {% block content %}
-    <h1>answer_question.html</h1>
+<div class="answer-page">
+
+  <div class="question-box">
+    <h2>{{ question.title }}</h2>
+    <p>{{ question.description }}</p>
+    <p class="asked-by">Asked by: <b>{{ question.user.username }}</b></p>
+  </div>
+
+  {% if question.answers.exists %}
+  <div class="existing-answers">
+    <h3>Existing Answers</h3>
+    <ul>
+      {% for ans in question.answers.all %}
+      <li>
+        <p>{{ ans.content }}</p>
+        <p class="answered-by">– {{ ans.user.username }}</p>
+      </li>
+      {% endfor %}
+    </ul>
+  </div>
+  {% endif %}
+
+  <div class="answer-form-section">
+    <h3>Your Answer</h3>
+    <form method="POST" class="answer-form">
+      {% csrf_token %}
+      {{ form.as_p }}
+      <button type="submit" class="submit-btn">Submit Answer</button>
+    </form>
+  </div>
+
+</div>
 {% endblock %}

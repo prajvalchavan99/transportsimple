@@ -1,4 +1,46 @@
-{% extends 'base.html' %} {% block title %}Home{% endblock %}
+{% extends 'base.html' %}
+{% block title %}Question Detail{% endblock %}
+
 {% block content %}
-<h1>question_detail.html</h1>
-{% endblock content %}
+<div class="question-detail-page">
+
+  <div class="question-box">
+    <h2>{{ question.title }}</h2>
+    <p>{{ question.description }}</p>
+    <p class="asked-by">Asked by <b>{{ question.user.username }}</b> on {{ question.created_at|date:"M d, Y" }}</p>
+  </div>
+
+  <div class="answer-section">
+    <h3>{{ answers|length }} Answers</h3>
+
+    {% if answers %}
+      {% for answer in answers %}
+      <div class="answer-card">
+        <p>{{ answer.content }}</p>
+        <div class="answer-footer">
+          <span>By <b>{{ answer.user.username }}</b></span>
+          {% if answer.liked_by_author %}
+            <span class="liked-by-author-label">✓ Liked by Author</span>
+          {% endif %}
+          <form action="{% url 'forum:like_answer' answer.id %}" method="POST" class="like-form">
+            {% csrf_token %}
+            <button type="submit" class="like-btn">
+              ❤️ {{ answer.likes.count }}
+            </button>
+          </form>
+        </div>
+      </div>
+      {% endfor %}
+    {% else %}
+      <p>No answers yet. Be the first one to answer!</p>
+    {% endif %}
+  </div>
+
+  <div class="cta-section">
+    <a href="{% url 'forum:answer_question' question.pk question.slug%}">
+      <button class="submit-btn">Write Your Answer</button>
+    </a>
+  </div>
+
+</div>
+{% endblock %}

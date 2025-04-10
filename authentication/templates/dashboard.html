@@ -1,7 +1,83 @@
-{% extends 'base.html' %} {% block title %}Dashboard{% endblock %}
+{% extends 'base.html' %}
+{% block title %}Dashboard{% endblock %}
+
 {% block content %}
-<div class="container">
-  <h2>Have a question in mind {{ request.user.username }}?</h2><br><br>
-  <a href="{% url 'forum:ask_question' %}"><button class="forumbutton"><b>Ask a Question</b></button></a>
+<div class="dashboard-container">
+
+  <div class="intro-card">
+    <h2>Hi {{ request.user.username }} 👋</h2>
+    <p>Have a question in mind?</p>
+    <a href="{% url 'forum:ask_question' %}">
+      <button class="ask-btn"><b>Ask a Question</b></button>
+    </a>
+  </div>
+
+  {% if question_list %}
+  <div class="section-card">
+    <h3>Your Questions</h3>
+    <table class="question-table">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Title</th>
+          <th>Answers</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for question in question_list %}
+        <tr>
+          <td>{{ forloop.counter }}</td>
+          <td>
+            <a href="{% url 'forum:question_detail' question.pk question.slug %}" class="question-link">
+              {{ question.title }}
+            </a>
+          </td>
+          <td>
+            <a href="{% url 'forum:question_detail' question.pk question.slug %}" class="answer-link">
+              {{ question.answer_count }}
+            </a>
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+  {% endif %}
+
+  {% if questions_to_answer %}
+  <div class="section-card">
+    <div class="section-card-header">
+      <h3>Questions You Can Answer</h3>
+      <a href="{% url 'forum:question_list' %}">View all</a>
+    </div>
+    <table class="question-table">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Title</th>
+          <th>Answers</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for question in questions_to_answer %}
+        <tr>
+          <td>{{ forloop.counter }}</td>
+          <td>
+            <a href="{% url 'forum:question_detail' question.pk question.slug %}" class="question-link">
+              {{ question.title }}
+            </a>
+          </td>
+          <td>
+            <a href="{% url 'forum:question_detail' question.pk question.slug %}" class="answer-link">
+              {{ question.answer_count }}
+            </a>
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+  {% endif %}
+
 </div>
-{% endblock content %}
+{% endblock %}

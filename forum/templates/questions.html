@@ -1,4 +1,64 @@
-{% extends 'base.html' %} {% block title %}Home{% endblock %}
+{% extends 'base.html' %}
+{% block title %}All Questions{% endblock %}
+
 {% block content %}
-<h1>questions.html</h1>
+<div class="container">
+    <h2>All Questions</h2>
+  
+    <form method="get" class="search-form">
+      <input
+        type="text"
+        name="q"
+        placeholder="Search questions..."
+        value="{{ query|default:'' }}"
+        class="search-input"
+      >
+      <button type="submit" class="search-button">Search</button>
+    </form>
+  
+<div class="container">
+  <h2>All Questions</h2>
+  {% if questions %}
+  <table class="question-table">
+    <thead>
+      <tr>
+        <th>Sr.</th>
+        <th>Question</th>
+        <th>Asked By</th>
+        <th>Answers</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for question in questions %}
+      <tr>
+        <td>{{ forloop.counter }}</td>
+        <td>
+          <div class="question-title">
+            <a href="{% url 'forum:question_detail' question.pk question.slug %}">
+              <strong>{{ question.title }}</strong>
+            </a>
+          </div>
+          <div class="question-snippet">
+            {{ question.description|truncatewords:20 }}
+          </div>
+        </td>
+        <td>
+          <div class="author-info">
+            {{ question.user.username }}<br>
+            <small>{{ question.created_at|date:"M d, Y H:i" }}</small>
+          </div>
+        </td>
+        <td>{{ question.answers.count }}</td>
+        <td>
+          <a class="action-link" href="{% url 'forum:question_detail' question.pk question.slug %}">View</a>
+        </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  {% else %}
+    <p>No questions yet. Be the first to ask one!</p>
+  {% endif %}
+</div>
 {% endblock %}

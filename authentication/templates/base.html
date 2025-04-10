@@ -5,6 +5,7 @@
     <title>{% block title %}TransportSimple{% endblock %}</title>
     <link rel="stylesheet" href="{% static 'css/theme.css' %}" />
     <link rel="stylesheet" href="{% static 'css/auth.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/forum.css' %}" />
   </head>
   <body>
     <header>
@@ -12,6 +13,8 @@
       <nav>
         {% if user.is_authenticated %} Welcome, {{ request.user.username }}
         <a href="{% url 'authentication:dashboard' %}">Home</a>
+        <a href="{% url 'forum:ask_question' %}">Ask Question</a>
+        <a href="{% url 'forum:question_list' %}">All Questions</a>
         <a href="{% url 'authentication:logout' %}">Logout</a>
         {% else %}
         <a href="{% url 'authentication:dashboard' %}">Home</a>
