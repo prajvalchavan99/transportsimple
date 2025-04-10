@@ -7,7 +7,13 @@
    ```bash
    cd transportsimple
    ```
-3. Start the development server:
+3. ```bash
+   virtualenv env
+   ```
+4. ```bash
+   env\Scripts\activate
+   ```
+5. Start the development server:
    ```bash
    python manage.py runserver
    ```
